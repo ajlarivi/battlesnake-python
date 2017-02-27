@@ -2,7 +2,6 @@ import bottle
 import os
 import random
 
-counter = 0
 
 @bottle.route('/static/<path:path>')
 def static(path):
@@ -33,22 +32,11 @@ def start():
 
 @bottle.post('/move')
 def move():
-    global counter
     data = bottle.request.json
-    if counter == 0:
-        myMove = 'left'
-    elif counter == 1:
-        myMove = 'down'
-    elif counter == 2:
-        move = 'right'
-    else:
-	myMove = 'up'
-        counter = 0
-    counter = counter + 1
     # TODO: Do things with data
     directions = ['up', 'down', 'left', 'right']
     return {
-        'move': myMove,
+        'move': 'up',
         'taunt': 'battlesnake-python!'
     }
 
