@@ -146,7 +146,7 @@ def move():
     kurt, grid = init(data)
     legalMoves = noKill(kurt, grid)
     ourMove = random.choice(legalMoves)
-    getFood, foodCoords = goForFood()
+    getFood, foodCoords = goForFood(kurt, data)
     if getFood:
 	ourMove = eat(kurt, data, legalMoves, foodCoords)
     # TODO: Do things with data
