@@ -56,19 +56,19 @@ def checkDown():
 	return True
 
 def noKill(kurt, grid):
+	legal = []
 	if checkUp(kurt, grid):
-		legal.append('right')
+		legal.append('up')
 	if checkLeft(kurt, grid):
 		legal.append('left')
 	if checkRight(kurt, grid):
 		legal.append('right')
 	if checkDown(kurt, grid):
 		legal.append('down')
+	print(legal)
 	if legal:
 		return legal
-	else:
-		return "FUCK"
-
+	return 'down'
 def init(data):
     grid = [[0 for col in xrange(data['height'])] for row in xrange(data['width'])]
     for snek in data['snakes']:
