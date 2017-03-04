@@ -142,10 +142,10 @@ def start():
 
 @bottle.post('/move')
 def move():
-    ourMove = random.choice(legalMoves)
     data = bottle.request.json
     kurt, grid = init(data)
     legalMoves = noKill(kurt, grid)
+    ourMove = random.choice(legalMoves)
     getFood, foodCoords = goForFood()
     if getFood:
 	ourMove = eat(kurt, data, legalMoves, foodCoords)
