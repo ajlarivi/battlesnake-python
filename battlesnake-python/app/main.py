@@ -80,7 +80,7 @@ def closestFood(kurt, data):
 	return foodList[0][0]
 	
 
-def goForForFood(kurt, data):
+def goForFood(kurt, data):
 	head = kurt['coords'][0]
 	food = closestFood(kurt, data)
 	kurtDistance = abs(food[0]-kurt[0]) + abs(food[1] - kurt[1])
