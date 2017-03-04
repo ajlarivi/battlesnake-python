@@ -22,7 +22,7 @@ def checkUp(kurt, grid):
 			return False
 	return True
 
-def checkLeft():
+def checkLeft(kurt, grid):
 	head = kurt['coords'][0]
 	body = kurt['coords']
 	futureMove = [head[0]-1, head[1]]
@@ -33,7 +33,7 @@ def checkLeft():
 			return False
 	return True
 
-def checkRight():
+def checkRight(kurt, grid):
 	head = kurt['coords'][0]
 	body = kurt['coords']
 	futureMove = [head[0]+1, head[1]]
@@ -44,7 +44,7 @@ def checkRight():
 			return False
 	return True
 
-def checkDown():
+def checkDown(kurt, grid):
 	head = kurt['coords'][0]
 	body = kurt['coords']
 	futureMove = [head[0], head[1]+1]
@@ -71,8 +71,9 @@ def noKill(kurt, grid):
 	return 'down'
 def init(data):
     grid = [[0 for col in xrange(data['height'])] for row in xrange(data['width'])]
+    ID = data['you']
     for snek in data['snakes']:
-        if snek['id']== ID:
+        if snek['id'] == ID:
             kurt = snek
         for coord in snek['coords']:
             grid[coord[0]][coord[1]] = SNAKE
@@ -113,7 +114,7 @@ def move():
     legalMoves = noKill(kurt, grid)
     # TODO: Do things with data
     return {
-        'move': random.choice(directions),
+        'move': random.choice(legalMoves),
         'taunt': 'battlesnake-python!'
     }
 
