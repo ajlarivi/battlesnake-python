@@ -70,17 +70,41 @@ def noKill(kurt, grid):
 	if legal:
 		return legal
 	return 'down'
+
 def closestFood(kurt, data):
-	head = kurt['coords'][0]
-	kurtDistance = abs(food[0]-kurt[0]) + abs(food[1] - kurt[1])
+	foodList = []
 	for food in data['food']:
-		for otherSnake in data['snakes']:
-			enemyHead = otherSnake['coords'][0]
-			distance = abs(food[0]-enemyHead[0]) + abs(food[1] - enemyHead[1])
-			if distance < kurtDistance:
-				return False
-	return True
-		
+		kurtDistance = abs(food[0]-kurt[0]) + abs(food[1] - kurt[1])
+		foodList.append([food, kurtDistance])
+	foodList.sort(key=lambda x: x.kurtDistance)
+	return foodList[0][0]
+	
+
+def goForForFood(kurt, data):
+	head = kurt['coords'][0]
+	food = closestFood(kurt, data)
+	kurtDistance = abs(food[0]-kurt[0]) + abs(food[1] - kurt[1])
+	for otherSnake in data['snakes']:
+		enemyHead = otherSnake['coords'][0]
+		distance = abs(food[0]-enemyHead[0]) + abs(food[1] - enemyHead[1])
+		if distance < kurtDistance:
+			return False
+	return True, foodCoords
+
+def eat(kurt, data, legalMoves, foodCoords):
+	head = kurt['coords'][0]
+	dx = foodCoords[0] - head[0]
+	dy = foodCoords[1] - head[1]
+	if dx > 0:
+		ourMove = 'right'
+	elif dx < 0: 
+		ourMove = 'left'
+	elif dy > 0:
+		ourMove = 'down'
+	elif dy < 0:
+		ourMove = 'up'
+	if ourMove not in legalMoves:
+		ourMove = random.choice(legalMoves)	
 def init(data):
     grid = [[0 for col in xrange(data['height'])] for row in xrange(data['width'])]
     ourID = data['you']
@@ -118,12 +142,16 @@ def start():
 
 @bottle.post('/move')
 def move():
+    ourMove = random.choice(legalMoves)
     data = bottle.request.json
     kurt, grid = init(data)
     legalMoves = noKill(kurt, grid)
+    getFood, foodCoords = goForFood()
+    if getFood:
+	ourMove = eat(kurt, data, legalMoves, foodCoords)
     # TODO: Do things with data
     return {
-        'move': random.choice(legalMoves),
+        'move': ourMove,
         'taunt': 'battlesnake-python!'
     }
 
