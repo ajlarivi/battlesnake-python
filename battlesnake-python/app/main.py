@@ -113,7 +113,7 @@ def move():
     legalMoves = noKill(kurt, grid)
     # TODO: Do things with data
     return {
-        'move': random.choice(legalMoves),
+        'move': random.choice(directions),
         'taunt': 'battlesnake-python!'
     }
 
