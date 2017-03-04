@@ -8,7 +8,6 @@ def static(path):
     return bottle.static_file(path, root='static/')
 
 SNAKE = 1
-WALL = 2
 FOOD = 3
 directions = ['up', 'down', 'left', 'right']
 
@@ -79,9 +78,6 @@ def init(data):
             kurt = snek
         for coord in snek['coords']:
             grid[coord[0]][coord[1]] = SNAKE
-
-    for wall in data['walls']:
-            grid[wall[0]][wall[1]] = WALL
 
     for f in data['food']:
         grid[f[0]][f[1]] = FOOD
