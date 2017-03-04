@@ -70,6 +70,17 @@ def noKill(kurt, grid):
 	if legal:
 		return legal
 	return 'down'
+def closestFood(kurt, data):
+	head = kurt['coords'][0]
+	kurtDistance = abs(food[0]-kurt[0]) + abs(food[1] - kurt[1])
+	for food in data['food']:
+		for otherSnake in data['snakes']:
+			enemyHead = otherSnake['coords'][0]
+			distance = abs(food[0]-enemyHead[0]) + abs(food[1] - enemyHead[1])
+			if distance < kurtDistance:
+				return False
+	return True
+		
 def init(data):
     grid = [[0 for col in xrange(data['height'])] for row in xrange(data['width'])]
     ourID = data['you']
