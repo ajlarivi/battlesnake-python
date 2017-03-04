@@ -57,7 +57,7 @@ def checkDown():
 
 def noKill(kurt, grid):
 	if checkUp(kurt, grid):
-		legal.append('up')
+		legal.append('right')
 	if checkLeft(kurt, grid):
 		legal.append('left')
 	if checkRight(kurt, grid):
