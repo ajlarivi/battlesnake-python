@@ -19,8 +19,8 @@ def checkUp(kurt, grid):
 	for coord in body:
 		if futureMove == coord:
 			return False
-		if futureMove[1] < 0:
-			return False
+	if futureMove[1] < 0:
+		return False
 	return True
 
 def checkLeft(kurt, grid):
@@ -30,8 +30,8 @@ def checkLeft(kurt, grid):
 	for coord in body:
 		if futureMove == coord:
 			return False
-		if futureMove[0] < 0:
-			return False
+	if futureMove[0] < 0:
+		return False
 	return True
 
 def checkRight(kurt, grid):
@@ -41,8 +41,8 @@ def checkRight(kurt, grid):
 	for coord in body:
 		if futureMove == coord:
 			return False
-		if futureMove[0] > 19:
-			return False
+	if futureMove[0] > 19:
+		return False
 	return True
 
 def checkDown(kurt, grid):
@@ -52,8 +52,8 @@ def checkDown(kurt, grid):
 	for coord in body:
 		if futureMove == coord:
 			return False
-		if futureMove[1] > 19:
-			return False
+	if futureMove[1] > 19:
+		return False
 	return True
 
 def noKill(kurt, grid):
