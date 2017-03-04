@@ -76,7 +76,7 @@ def closestFood(kurt, data):
 	for food in data['food']:
 		kurtDistance = abs(food[0]-kurt[0]) + abs(food[1] - kurt[1])
 		foodList.append([food, kurtDistance])
-	foodList.sort(key=lambda x: x.kurtDistance)
+	foodList.sort(key=lambda x: x[1])
 	return foodList[0][0]
 	
 
