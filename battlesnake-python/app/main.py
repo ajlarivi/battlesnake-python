@@ -7,7 +7,9 @@ import random
 def static(path):
     return bottle.static_file(path, root='static/')
 
-
+SNAKE = 1
+WALL = 2
+FOOD = 3
 directions = ['up', 'down', 'left', 'right']
 
 def checkUp(kurt, grid):
