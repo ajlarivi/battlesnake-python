@@ -71,9 +71,9 @@ def noKill(kurt, grid):
 	return 'down'
 def init(data):
     grid = [[0 for col in xrange(data['height'])] for row in xrange(data['width'])]
-    ID = data['you']
+    ourID = data['you']
     for snek in data['snakes']:
-        if snek['id'] == ID:
+        if snek['id'] == ourID:
             kurt = snek
         for coord in snek['coords']:
             grid[coord[0]][coord[1]] = SNAKE
