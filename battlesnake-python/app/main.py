@@ -13,6 +13,7 @@ directions = ['up', 'down', 'left', 'right']
 def checkUp(kurt, grid):
 	head = kurt['coords'][0]
 	body = kurt['coords']
+	print(body)
 	futureMove = [head[0], head[1]-1]
 	for coord in body:
 		if futureMove == coord:
@@ -35,7 +36,7 @@ def checkLeft():
 def checkRight():
 	head = kurt['coords'][0]
 	body = kurt['coords']
-	futureMove = [head[0]+1, head[1]
+	futureMove = [head[0]+1, head[1]]
 	for coord in body:
 		if futureMove == coord:
 			return False
@@ -54,7 +55,7 @@ def checkDown():
 			return False
 	return True
 
-def noKill(kurt, grid);
+def noKill(kurt, grid):
 	if checkUp(kurt, grid):
 		legal.append('up')
 	if checkLeft(kurt, grid):
@@ -68,7 +69,7 @@ def noKill(kurt, grid);
 	else:
 		return "FUCK"
 
-init(data):
+def init(data):
     grid = [[0 for col in xrange(data['height'])] for row in xrange(data['width'])]
     for snek in data['snakes']:
         if snek['id']== ID:
