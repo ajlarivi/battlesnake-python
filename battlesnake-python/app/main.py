@@ -84,6 +84,7 @@ init(data):
 
     return kurt, grid
 
+@bottle.post('/start')
 def start():
     data = bottle.request.json
     game_id = data['game_id']
@@ -107,8 +108,8 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-	kurt, grid = init(data)
-	legalMoves = noKill(kurt, grid)
+    kurt, grid = init(data)
+    legalMoves = noKill(kurt, grid)
     # TODO: Do things with data
     return {
         'move': random.choice(legalMoves),
