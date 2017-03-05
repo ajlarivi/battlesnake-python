@@ -88,7 +88,7 @@ def closestFood(kurt, data):
 def goForFood(kurt, data):
 	head = kurt['coords'][0]
 	food = closestFood(kurt, data)
-	kurtDistance = abs(food[0]-kurt[0]) + abs(food[1] - kurt[1])
+	kurtDistance = abs(food[0]-head[0]) + abs(food[1] - head[1])
 	for otherSnake in data['snakes']:
 		enemyHead = otherSnake['coords'][0]
 		distance = abs(food[0]-enemyHead[0]) + abs(food[1] - enemyHead[1])
