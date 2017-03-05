@@ -2,12 +2,11 @@ import bottle
 import os
 import random
 
-#test
 
 @bottle.route('/static/<path:path>')
 def static(path):
     return bottle.static_file(path, root='static/')
-BUFFER = 1
+
 SNAKE = 1
 FOOD = 3
 directions = ['up', 'down', 'left', 'right']
@@ -173,7 +172,7 @@ def start():
 
 @bottle.post('/move')
 def move():
-    taunts = ['According to all know laws of aviation, there is no way a bee should be able to fly.', 
+    taunts = ['According to all know laws of aviation, there is no way a bee should be able to fly.'] 
     data = bottle.request.json
     kurt, grid = init(data)
     legalMoves = noKill(kurt, grid, data)
