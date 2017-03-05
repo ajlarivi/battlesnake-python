@@ -6,7 +6,7 @@ import random
 @bottle.route('/static/<path:path>')
 def static(path):
     return bottle.static_file(path, root='static/')
-
+BUFFER = 1
 SNAKE = 1
 FOOD = 3
 directions = ['up', 'down', 'left', 'right']
