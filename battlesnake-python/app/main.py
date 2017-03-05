@@ -76,6 +76,7 @@ def closestFood(kurt, data):
 	minDist = 10000
 	minCoord = None
 	for food in data['food']:
+		print(food)
 		kurtDistance = abs(food[0]-kurt[0]) + abs(food[1] - kurt[1])
 		if kurtDistance < minDist:
 			minDist = kurtDistance
