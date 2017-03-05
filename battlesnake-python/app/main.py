@@ -94,12 +94,15 @@ def goForFood(kurt, data):
 		distance = abs(food[0]-enemyHead[0]) + abs(food[1] - enemyHead[1])
 		if distance < kurtDistance:
 			return False
+			print(False)
 	return True, food
 
 def eat(kurt, data, legalMoves, foodCoords):
 	head = kurt['coords'][0]
 	dx = foodCoords[0] - head[0]
 	dy = foodCoords[1] - head[1]
+	print(dx)
+	print(dy)
 	if dx > 0:
 		ourMove = 'right'
 	elif dx < 0: 
@@ -110,6 +113,8 @@ def eat(kurt, data, legalMoves, foodCoords):
 		ourMove = 'up'
 	if ourMove not in legalMoves:
 		ourMove = random.choice(legalMoves)	
+	return ourMove
+
 def init(data):
     grid = [[0 for col in xrange(data['height'])] for row in xrange(data['width'])]
     ourID = data['you']
