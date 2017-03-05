@@ -2,6 +2,7 @@ import bottle
 import os
 import random
 
+#test
 
 @bottle.route('/static/<path:path>')
 def static(path):
