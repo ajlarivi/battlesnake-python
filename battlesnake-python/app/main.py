@@ -11,7 +11,7 @@ SNAKE = 1
 FOOD = 3
 directions = ['up', 'down', 'left', 'right']
 
-def checkUp(kurt, grid):
+def checkUp(kurt, grid, data):
 	head = kurt['coords'][0]
 	body = kurt['coords']
 	print(body)
@@ -19,52 +19,70 @@ def checkUp(kurt, grid):
 	for coord in body:
 		if futureMove == coord:
 			return False
+	for snake in data['snakes']:
+		for coord in snake['coords']:
+			if futureMove == coord:
+				return false
 	if futureMove[1] < 0:
 		return False
 	return True
 
-def checkLeft(kurt, grid):
+def checkLeft(kurt, grid, data):
 	head = kurt['coords'][0]
 	body = kurt['coords']
 	futureMove = [head[0]-1, head[1]]
 	for coord in body:
 		if futureMove == coord:
 			return False
+	for snake in data['snakes']:
+		for coord in snake['coords']:
+			if futureMove == coord:
+				return false
 	if futureMove[0] < 0:
 		return False
 	return True
 
-def checkRight(kurt, grid):
+def checkRight(kurt, grid, data):
 	head = kurt['coords'][0]
 	body = kurt['coords']
 	futureMove = [head[0]+1, head[1]]
 	for coord in body:
 		if futureMove == coord:
 			return False
+	for snake in data['snakes']:
+		for coord in snake['coords']:
+			if futureMove == coord:
+				return false
+
 	if futureMove[0] > 19:
 		return False
 	return True
 
-def checkDown(kurt, grid):
+def checkDown(kurt, grid, data):
 	head = kurt['coords'][0]
 	body = kurt['coords']
 	futureMove = [head[0], head[1]+1]
 	for coord in body:
 		if futureMove == coord:
 			return False
+	for snake in data['snakes']:
+		for coord in snake['coords']:
+			if futureMove == coord:
+				return false
+
 	if futureMove[1] > 19:
 		return False
 	return True
 
-def noKill(kurt, grid):
+def noKill(kurt, grid, data):
 	legal = []
-	if checkUp(kurt, grid):
+	if checkUp(kurt, grid, data):
 		legal.append('up')
-	if checkLeft(kurt, grid):
+	if checkLeft(kurt, grid, data):
 		legal.append('left')
-	if checkRight(kurt, grid):
+	if checkRight(kurt, grid, data):
 		legal.append('right')
-	if checkDown(kurt, grid):
+	if checkDown(kurt, grid, data):
 		legal.append('down')
 	print(legal)
 	if legal:
@@ -154,7 +172,7 @@ def start():
 def move():
     data = bottle.request.json
     kurt, grid = init(data)
-    legalMoves = noKill(kurt, grid)
+    legalMoves = noKill(kurt, grid, data)
     ourMove = random.choice(legalMoves)
     getFood, foodCoords = goForFood(kurt, data)
     if getFood:
