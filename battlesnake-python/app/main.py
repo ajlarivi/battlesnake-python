@@ -72,12 +72,14 @@ def noKill(kurt, grid):
 	return 'down'
 
 def closestFood(kurt, data):
+	head = kurt['coords'][0]
 	foodList = []
 	minDist = 10000
 	minCoord = None
 	for food in data['food']:
-		print(food)
-		kurtDistance = abs(food[0]-kurt[0]) + abs(food[1] - kurt[1])
+		print("food =" + food)
+		print("head =" + head)
+		kurtDistance = abs(food[0]-head[0]) + abs(food[1] - head[1])
 		if kurtDistance < minDist:
 			minDist = kurtDistance
 			minCoord = food
