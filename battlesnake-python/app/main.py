@@ -129,6 +129,8 @@ def eat(kurt, data, legalMoves, foodCoords):
 		ourMove = 'down'
 	elif dy < 0:
 		ourMove = 'up'
+	else:
+		ourmove = randbom.choice(legalMoves)
 	if ourMove not in legalMoves:
 		ourMove = random.choice(legalMoves)	
 	return ourMove
