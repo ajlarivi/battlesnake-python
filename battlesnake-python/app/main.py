@@ -54,7 +54,7 @@ def checkRight(kurt, grid, data):
 			if futureMove == coord:
 				return false
 
-	if futureMove[0] > 19:
+	if futureMove[0] > 14:
 		return False
 	return True
 
@@ -70,7 +70,7 @@ def checkDown(kurt, grid, data):
 			if futureMove == coord:
 				return false
 
-	if futureMove[1] > 19:
+	if futureMove[1] > 14:
 		return False
 	return True
 
@@ -172,6 +172,7 @@ def start():
 
 @bottle.post('/move')
 def move():
+    taunts = ['According to all know laws of aviation, there is no way a bee should be able to fly.', 
     data = bottle.request.json
     kurt, grid = init(data)
     legalMoves = noKill(kurt, grid, data)
