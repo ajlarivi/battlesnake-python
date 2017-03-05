@@ -94,7 +94,7 @@ def goForFood(kurt, data):
 		distance = abs(food[0]-enemyHead[0]) + abs(food[1] - enemyHead[1])
 		if distance < kurtDistance:
 			return False
-	return True, foodCoords
+	return True, food
 
 def eat(kurt, data, legalMoves, foodCoords):
 	head = kurt['coords'][0]
